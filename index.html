@@ -344,4 +344,25 @@
                                 speak("К сожалению, я не нашел об этом информацию.");
                             }
                         } catch(e) {
-                            showGoose("Ошибка интернета при поиске",
+                            showGoose("Ошибка интернета при поиске", "📡", true);
+                        }
+                        handled = true;
+                    }
+                }
+
+                if (!handled) {
+                    showGoose(`Услышал: "${transcript}". Не понял команду.`, "🤷‍♂️", true);
+                    speak("Я не понял команду.");
+                }
+            };
+
+            recognition.onerror = () => {
+                micBtn.classList.remove('listening');
+                showGoose("Не расслышал. Нажми микрофон!", "🪿", true);
+            };
+        } else {
+            alert("Браузер не поддерживает голос. Откройте в Google Chrome.");
+        }
+    </script>
+</body>
+</html>
